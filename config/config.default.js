@@ -6,6 +6,11 @@ module.exports = appInfo => {
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1511243990337_6103';
 
+  config.latoutPath = {
+    admin: '/admin/common/layout.html',
+    h5: '',
+  };
+
   // add your config here
   config.middleware = [];
 

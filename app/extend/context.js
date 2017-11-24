@@ -5,13 +5,13 @@ module.exports = {
       const data = await new Promise((resolve, reject) => {
         try {
           const data = this.renderView(tpl, datas);
-          console.log(data);
           resolve(data);
         } catch (err) {
           reject(err);
         }
       });
-      await this.render('layout.html', { body: data });
+      const layout = this.app.config.latoutPath;
+      await this.render(layout.admin, { body: data });
     } catch (err) {
       console.log(err);
     }
