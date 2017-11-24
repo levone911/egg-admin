@@ -1,1 +1,42 @@
-<h1><%= data %></h1>
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">Data Table With Full Features</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <table id="example" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Start date</th>
+                    <th>Salary</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+<!-- page script -->
+<script>
+  $(function () {
+    $('#example').DataTable({
+      processing: true,
+      serverSide: true,
+      language: {
+        url: "public/admin/template/datatables.net/js/dataTables.zh.lang"
+      },
+      ajax: {
+        url: "/api/dataTable/test",
+        data: function (d) {
+          d.columns = null;
+          d.search = null;
+          d.order = null;
+        }
+      }
+    });
+
+  })
+</script>
