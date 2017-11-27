@@ -1,12 +1,11 @@
 'use strict';
 const createMenu = {
-  menuJson: '',
+  menuJson: 'undefined',
   menuHtml: (list, isSub) => {
     return list.map(item => {
       const { href, className, name, subMenu } = item;
       let sub = '',
         menuItem = '';
-      console.log(subMenu && subMenu.length > 0);
       if (subMenu && subMenu.length > 0) {
         sub = [ '<ul class="treeview-menu">', createMenu.menuHtml(subMenu, true), '</ul>' ].join('');
       }
@@ -28,6 +27,7 @@ const createMenu = {
         }
 
       }
+      createMenu.menuJson = menuItem;
       return menuItem;
     }).join('');
   },
@@ -50,8 +50,11 @@ module.exports = {
     });
     // 渲染用户菜单
     const menu = await new Promise((resolve, reject) => {
-      const menuJson = createMenu.menuHtml(layout.menuTree);
-      console.log(menuJson);
+      if (createMenu.getMenu() === 'undefined') {
+        console.log(2222)
+        createMenu.menuHtml(layout.menuTree);
+      }
+      const menuJson = createMenu.getMenu();
       try {
         const data = this.renderView(layout.sidebar, { menu: menuJson });
         resolve(data);
