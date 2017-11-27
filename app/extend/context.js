@@ -2,7 +2,7 @@
 const createMenu = {
   menuJson: 'undefined',
   menuHtml: (list, isSub) => {
-    return list.map(item => {
+    createMenu.menuJson = list.map(item => {
       const { href, className, name, subMenu } = item;
       let sub = '',
         menuItem = '';
@@ -25,11 +25,10 @@ const createMenu = {
                   ${sub}
                 </li>`;
         }
-
       }
-      createMenu.menuJson = menuItem;
       return menuItem;
     }).join('');
+    return createMenu.menuJson;
   },
   getMenu: () => {
     return createMenu.menuJson;
@@ -51,7 +50,6 @@ module.exports = {
     // 渲染用户菜单
     const menu = await new Promise((resolve, reject) => {
       if (createMenu.getMenu() === 'undefined') {
-        console.log(2222)
         createMenu.menuHtml(layout.menuTree);
       }
       const menuJson = createMenu.getMenu();

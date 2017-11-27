@@ -17,7 +17,7 @@ module.exports = appInfo => {
   };
 
   // add your config here
-  config.middleware = [];
+  config.middleware = [ 'loginStatus' ];
 
   exports.static = {
     prefix: '/public/',

@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = app => {
-  // h5部分
-  app.get('/', app.controller.home.index);
-  // admin部分
-  app.get('/admin', app.controller.admin.index);
+  // 页面
+  app.get('/', app.controller.admin.index);
+  app.get('/login', app.controller.login.index);
+  // api接口
   app.get('/api/dataTable/test', app.controller.admin.dataTable);
 };
