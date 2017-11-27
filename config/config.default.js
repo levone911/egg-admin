@@ -1,5 +1,6 @@
 'use strict';
 const path = require('path');
+const menuJson = require('./menuTree');
 module.exports = appInfo => {
   const config = exports = {};
 
@@ -7,7 +8,11 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1511243990337_6103';
 
   config.latoutPath = {
-    admin: '/admin/common/layout.html',
+    admin: {
+      path: '/common/layout.html',
+      sidebar: '/common/sidebar.html',
+      menuTree: menuJson,
+    },
     h5: '',
   };
 

@@ -4,7 +4,7 @@ const Controller = require('egg').Controller;
 
 class HomeController extends Controller {
   async index(ctx) {
-    await ctx.renderLayout('/admin/grid.html');
+    await ctx.renderLayout('grid.html');
   }
   dataTable(ctx) {
     ctx.body = {
