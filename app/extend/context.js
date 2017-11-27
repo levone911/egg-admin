@@ -38,12 +38,16 @@ const createMenu = {
 module.exports = {
   async renderLayout(tpl, datas) {
     const layout = this.app.config.latoutPath.admin;
+    if (!layout) {
+      this.logger.error('未找到模板路径配置');
+    }
     // 渲染目标模版
     const data = await new Promise((resolve, reject) => {
       try {
         const data = this.renderView(tpl, datas);
         resolve(data);
       } catch (err) {
+        this.logger.error('渲染目标模版：', err);
         reject(err);
       }
     });
@@ -57,6 +61,7 @@ module.exports = {
         const data = this.renderView(layout.sidebar, { menu: menuJson });
         resolve(data);
       } catch (err) {
+        this.logger.error('渲染用户菜单：', err);
         reject(err);
       }
     });
