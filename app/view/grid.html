@@ -1,6 +1,9 @@
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Data Table With Full Features</h3>
+        <h3 class="box-title">
+            Data Table With Full Features
+            <button id="addTest" type="button" class="btn btn-block btn-primary">弹窗操作</button>
+        </h3>
     </div>
     <!-- /.box-header -->
     <div class="box-body">
@@ -18,6 +21,20 @@
             <tbody></tbody>
         </table>
     </div>
+
+    <div class="box-body" style="display: none" id="dialogBody"><div class="form-group"><label for="exampleInputEmail1">Email address</label><input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"></div><div class="form-group"><label for="exampleInputPassword1">Password</label><input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"></div>
+        <div class="form-group">
+            <label for="exampleInputFile">File input</label>
+            <input type="file" id="exampleInputFile">
+            <p class="help-block">Example block-level help text here.</p>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"> Check me out
+            </label>
+        </div>
+    </div>
+
 </div>
 <!-- page script -->
 <script>
@@ -36,6 +53,36 @@
         }
       }
     });
-
+    $('#addTest').on('click', function () {
+      BootstrapDialog.show({
+        title: 'Quick Example',
+        message: $('<div></div>').append($('#dialogBody').html()),
+        buttons: [{
+          label: 'Button 1',
+          title: 'Mouse over Button 1'
+        }, {
+          label: 'Button 2',
+          // no title as it is optional
+          cssClass: 'btn-primary',
+          data: {
+            js: 'btn-confirm',
+            'user-id': '3'
+          },
+          action: function(){
+            alert('Hi Orange!');
+          }
+        }, {
+          icon: 'glyphicon glyphicon-ban-circle',
+          label: 'Button 3',
+          title: 'Mouse over Button 3',
+          cssClass: 'btn-warning'
+        }, {
+          label: 'Close',
+          action: function(dialogItself){
+            dialogItself.close();
+          }
+        }]
+      });
+    })
   })
 </script>
