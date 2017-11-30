@@ -1,7 +1,7 @@
 # adminSystem
 
 PC管理后台
-![PC管理后台](https://github.com/linwh8/ModernWebPrograming/raw/master/app/public/img/admin.jpg)
+![PC管理后台](https://github.com/levone911/egg-admin/raw/master/app/public/img/admin.jpg)
 
 ### 功能描述
 
