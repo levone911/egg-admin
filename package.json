@@ -29,7 +29,7 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "start": "eggctl start --daemon",
+    "start": "gulp prod && eggctl start --daemon --env=prod",
     "stop": "eggctl stop",
     "dev": "gulp default & egg-bin dev",
     "test": "gulp prod && eggctl start --daemon --env=prod",
