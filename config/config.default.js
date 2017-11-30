@@ -30,6 +30,8 @@ module.exports = appInfo => {
     preload: false,
     buffer: false,
     maxFiles: 1000,
+    jsPath: 'public/js/pages/',
+    cssPath: 'public/css/',
   };
   exports.view = {
     mapping: {

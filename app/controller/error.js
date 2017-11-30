@@ -11,6 +11,8 @@ class HomeController extends Controller {
     }
     await this.ctx.renderLayout('error.html', {
       serverStatus: status,
+      js: false,
+      css: false,
     });
   }
 }

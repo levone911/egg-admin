@@ -5,10 +5,8 @@
   "private": true,
   "dependencies": {
     "egg": "^1.9.0",
-    "egg-scripts": "^2.1.0",
-    "egg-view-ejs": "^2.0.0",
-    "gulp": "^3.9.1",
-    "gulp-less": "^3.3.2"
+    "egg-scripts": "^2.3.0",
+    "egg-view-ejs": "^2.0.0"
   },
   "devDependencies": {
     "autod": "^2.10.0",
@@ -19,17 +17,24 @@
     "egg-mock": "^3.13.0",
     "eslint": "^4.10.0",
     "eslint-config-egg": "^5.1.0",
+    "gulp": "^3.9.1",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-less": "^3.3.2",
+    "gulp-notify": "^3.0.0",
+    "gulp-rev": "^8.1.0",
+    "gulp-uglify": "^3.0.0",
     "webstorm-disable-index": "^1.2.0"
   },
   "engines": {
     "node": ">=8.9.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon",
-    "stop": "egg-scripts stop",
-    "dev": "egg-bin dev & gulp default",
+    "start": "eggctl start --daemon",
+    "stop": "eggctl stop",
+    "dev": "gulp default & egg-bin dev",
+    "test": "gulp prod && eggctl start --daemon --env=prod",
     "debug": "egg-bin debug",
-    "test": "npm run lint -- --fix && npm run test-local",
+    "//": "npm run lint -- --fix && npm run test-local",
     "test-local": "egg-bin test",
     "cov": "egg-bin cov",
     "lint": "eslint .",

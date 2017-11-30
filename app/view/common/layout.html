@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 <html>
-  <% include head.html %>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 2 | Data Tables</title>
+    <% include head.html %>
+    <% if (cssPath) { %>
+        <link rel="stylesheet" href="<%- cssPath %>">
+    <% } %>
+</head>
 <body class="hold-transition skin-blue sidebar-mini">
-<% include footer.html %>
+
 <div class="wrapper">
 
     <% include header.html %>
@@ -22,6 +30,11 @@
     </div>
 
 </div>
+<% include footer.html %>
+<!-- pageScript -->
+<% if (jsPath) { %>
+    <script src="<%- jsPath %>"></script>
+<% } %>
 <!-- ./wrapper -->
 </body>
 </html>

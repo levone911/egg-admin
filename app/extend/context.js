@@ -1,4 +1,6 @@
 'use strict';
+const revJs = require('../public/js/rev/rev-manifest.json');
+const revCss = require('../public/css/rev/rev-manifest.json');
 const createMenu = {
   menuJson: 'undefined',
   menuHtml: (list, isSub) => {
@@ -37,6 +39,37 @@ const createMenu = {
 
 module.exports = {
   async renderLayout(tpl, datas) {
+    if (!tpl) {
+      this.logger.error('没有给layout传入参数');
+    }
+    if (tpl.indexOf('.') !== -1) {
+      tpl = tpl.split('.')[0];
+    }
+    if (!datas) {
+      datas = {};
+    }
+    if (datas.js === undefined) datas.js = true;
+    if (datas.css === undefined) datas.css = true;
+    let scriptPath = false,
+      stylePath = false;
+    const configStatic = this.app.config.static;
+    // 模版是否需要引入js
+    const app = this.app;
+    if (datas.js) {
+      if (app.config.env === 'local') {
+        scriptPath = configStatic.jsPath + tpl + '.js';
+      } else {
+        scriptPath = configStatic.jsPath + revJs[(tpl + '.js')];
+      }
+    }
+    // 模版是否需要引入css
+    if (datas.css) {
+      if (app.config.env === 'local') {
+        stylePath = configStatic.cssPath + tpl + '.css';
+      } else {
+        stylePath = configStatic.cssPath + revCss[(tpl + '.css')];
+      }
+    }
     const layout = this.app.config.latoutPath.admin;
     if (!layout) {
       this.logger.error('未找到模板路径配置');
@@ -65,6 +98,6 @@ module.exports = {
         reject(err);
       }
     });
-    await this.render(layout.path, { body: data, sidebar: menu });
+    await this.render(layout.path, { body: data, sidebar: menu, jsPath: scriptPath, cssPath: stylePath });
   },
 };
